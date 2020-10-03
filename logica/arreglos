@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package E4U1Ejercicio;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Dominguez Cazales Jennifer Irlanda
+ */
+
+public class arreglos {
+    public void palabras(){
+    List <String> Listaordenada = new ArrayList<String>();
+    String[] palabrasDeArchivo=null;
+    String[]palabrasOriginales = null;
+    //String[]arreglofinal = null;
+  
+    Listaordenada.add("super frase a espera de ser ordenada");
+        File archivo = null;
+      FileReader fr = null;
+      BufferedReader br = null;
+      try {
+         // Apertura del fichero y creacion de BufferedReader para poder
+         // hacer una lectura comoda (disponer del metodo readLine()).
+           
+         archivo = new File ("C:\\intento.txt");
+         fr = new FileReader (archivo);
+         br = new BufferedReader(fr);
+        //**Esperemos que separe
+        String linea; 
+           while ((linea=br.readLine())!=null){
+             palabrasDeArchivo=linea.split(" ");
+             }
+         
+           for(String nombre: Listaordenada){
+            palabrasOriginales = nombre.split(" ");
+            }   
+         
+        // String linea=br.readLine();
+           System.out.println("___Impresion de las palabras del archivo___");
+          for (int i = 0; i <palabrasDeArchivo.length; i++) {
+              System.out.print(palabrasDeArchivo[i]+" ");   
+          }
+          System.out.println(" ");
+          
+          System.out.println("___Impresion de las palabras originales___");
+          for (int i = 0; i <palabrasOriginales.length; i++) {
+              System.out.print(palabrasOriginales[i]+" ");   
+          }  
+          System.out.println(" ");
+          System.out.println("**************************************************");
+             String[ ]   arreglofinal = new  String[palabrasOriginales.length];
+        //  System.out.println("Frase ordenada");
+          for (int i = 0; i < palabrasOriginales.length; i++) {
+              for (int j = 0; j < palabrasOriginales.length; j++) {
+                  if (palabrasOriginales[i].equals(palabrasDeArchivo[j])) {
+                      arreglofinal[i]=palabrasDeArchivo[j];
+                      
+                  }
+              }
+          }
+          
+          System.out.println("Impresion del arreglo final");
+          for (int i = 0; i < arreglofinal.length; i++) {
+              System.out.print(arreglofinal[i]+" ");
+          }
+       
+       
+         
+         while((linea=br.readLine())!=null)
+            System.out.println(linea);
+      }
+ 
+      catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         // En el finally cerramos el fichero, para asegurarnos
+         // que se cierra tanto si todo va bien como si salta 
+         // una excepcion.
+         try{                    
+            if( null != fr ){   
+               fr.close();     
+            }                  
+         }catch (Exception e2){ 
+            e2.printStackTrace();
+         }
+      }
+    }
+}
